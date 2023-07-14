@@ -13,11 +13,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/bookstore")
-@AllArgsConstructor
 public class BookStoreController {
 
     private final OrderService orderService;
     private final BookService bookService;
+
+    public BookStoreController(OrderService orderService, BookService bookService) {
+        this.orderService = orderService;
+        this.bookService = bookService;
+    }
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {

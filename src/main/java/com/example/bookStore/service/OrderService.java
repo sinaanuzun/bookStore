@@ -13,12 +13,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class OrderService {
 
     private final Logger logger = LoggerFactory.getLogger(OrderService.class);
     private final BookService bookService;
     private final OrderRepository orderRepository;
+
+    public OrderService(BookService bookService, OrderRepository orderRepository) {
+        this.bookService = bookService;
+        this.orderRepository = orderRepository;
+    }
 
     public Order putAnOrder(List<Integer> bookIdList, String userName) {
         List<Optional<Book>> bookList = bookIdList.stream()
